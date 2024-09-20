@@ -9,16 +9,16 @@ def add_item(shoe_link):
         driver.get(shoe_link)
         try:
             # Attempt to find the discounted price first
-            price_dollar = driver.find_element(By.CLASS_NAME, "orange")
+            price_dollar = driver.find_element(By.CLASS_NAME, "salepage-price.cms-moneyColor")
         except:
             # If discounted price is not found, try to find the regular price
-            price_dollar = driver.find_element(By.CSS_SELECTOR, 'span[class=""]')
+            price_dollar = driver.find_element(By.CLASS_NAME, 'cms-discountMoneyColor')
             print(price_dollar)
 
         current_price_text = price_dollar.text
-        current_price = int(current_price_text[3:])
+        current_price = int(current_price_text[3:-3])
         
-        shoe_name = driver.find_element(By.CLASS_NAME, "pdp-right-name").text
+        shoe_name = driver.find_element(By.CLASS_NAME, "salepage-title").text
         
         driver.quit()
         

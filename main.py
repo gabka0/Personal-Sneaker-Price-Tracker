@@ -1,8 +1,7 @@
-import nike, adidas, newBalance, asics, vans, converse
-from sneaker import Sneaker
+import nike, adidas, newBalance, asics, vans
 from connection import mycursor, db
 import storeData
-# import schedule
+import schedule
 import time
 import smtplib
 from email.mime.text import MIMEText
@@ -26,10 +25,6 @@ def check_prices():
 
         if brand_name.lower() == "new balance":
             current_price = newBalance.find_item(shoe_link)
-            current_price_int = current_price[0]
-
-        if brand_name.lower() == "converse":
-            current_price = converse.find_item(shoe_link)
             current_price_int = current_price[0]
 
         if brand_name.lower() == "asics":
@@ -82,10 +77,6 @@ if __name__ == "__main__":
         current_price, shoe_name = asics.find_item(shoe_link)
         storeData.store_scrapped_info(current_price, shoe_name, shoe_link)
 
-    if brand_name.lower() == "converse":
-        current_price, shoe_name = converse.find_item(shoe_link)
-        storeData.store_scrapped_info(current_price, shoe_name, shoe_link)
-
     if brand_name.lower() == "new balance":
         current_price, shoe_name = newBalance.find_item(shoe_link)
         storeData.store_scrapped_info(current_price, shoe_name, shoe_link)
@@ -98,11 +89,11 @@ if __name__ == "__main__":
         
 
     # Schedule daily price check 
-    """
+
     schedule.every().day.at("09:00").do(check_prices)
     while True:
         schedule.run_pending()
         time.sleep(1)
-    """
+
 
 

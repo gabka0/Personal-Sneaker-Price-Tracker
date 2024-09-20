@@ -12,7 +12,7 @@ def find_item(shoe_link):
             price_element = driver.find_element(By.CLASS_NAME, 'sale')
         except:
             # If discounted price is not found, try to find the regular price
-            price_element = driver.find_element(By.XPATH, '//p[@class="title-fu"]/span[@class=""]')
+            price_element = driver.find_element(By.CLASS_NAME, 'price')
 
 
         current_price_text = price_element.text
