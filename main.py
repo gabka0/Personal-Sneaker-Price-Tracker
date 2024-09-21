@@ -5,6 +5,10 @@ import schedule
 import time
 import smtplib
 from email.mime.text import MIMEText
+import os
+from dotenv import load_dotenv # type: ignore
+
+load_dotenv()
 
 def check_prices():
     # Fetch all sneakers from database
@@ -43,7 +47,7 @@ def check_prices():
 def send_email_notification(brand_name, shoe_link, current_price, max_price):
     sender_email = "kassymgabdushev@gmail.com"
     receiver_email = "kassymgabdushev@gmail.com"
-    password = 'yptpiyiyhakznczu'
+    password = os.getenv('PASSWORD')
     subject = f"Price Alert: {brand_name} sneaker price dropped!"
     body = f"The price of the sneaker has dropped below your desired price of ${max_price}. Current price is ${current_price}.\nLink: {shoe_link}"
     
